@@ -26,6 +26,7 @@ class TaskRequest extends Request
         return [
             'title' => 'required',
             'description' => 'required',
+            'scheduled_at' => 'required'
         ];
     }
 }
