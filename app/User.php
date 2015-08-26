@@ -32,4 +32,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * A user has many task relationship
+     *
+     */
+    public function tasks()
+    {
+        return $this->hasMany('App\Task');
+    }
 }

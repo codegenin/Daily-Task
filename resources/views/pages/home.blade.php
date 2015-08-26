@@ -8,6 +8,8 @@
         And guess what they have planned for you? Not much - Jim Rohn
     </p>
     <hr>
-    <a href="{{ route('tasks.index') }}" class="btn btn-info">View Tasks</a>
-    <a href="{{ route('tasks.create') }}" class="btn btn-primary">Add New Task</a>
+    @if (Auth::check())
+        <a href="{{ route('tasks.index') }}" class="btn btn-info">View Tasks</a>
+        <a href="{{ route('tasks.create') }}" class="btn btn-primary">Add New Task</a>
+    @endif
 @endsection

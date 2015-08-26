@@ -19,8 +19,13 @@
       <a class="navbar-brand" href="{{ route('home') }}">Daily Tasks</a>
     </div>
     <div class="nav navbar-nav navbar-right">
-        <li><a href="{{ route('home') }}">Home</a></li>
-        <li><a href="{{ route('tasks.index') }}">Tasks</a></li>
+        @if (Auth::guest())
+            <li><a href="/auth/login">Login</a></li>
+        @else
+            <li><a href="{{ route('home') }}">Home</a></li>
+            <li><a href="{{ route('tasks.index') }}">Tasks</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+        @endif
     </div>
   </div>
 </nav>

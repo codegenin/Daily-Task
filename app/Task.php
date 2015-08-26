@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Task extends Model
 {
@@ -35,12 +36,11 @@ class Task extends Model
     }
 
     /**
-     * Get the tasks for today
+     * Task belongs to a user relationship
      *
-     * @param $query
      */
-    public function scopeTasksToday($query)
+    public function user()
     {
-        $query->where('scheduled_at', '<=', Carbon::now());
+        return $this->belongsTo('App\User');
     }
 }

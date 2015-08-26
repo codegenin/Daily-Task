@@ -9,10 +9,20 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class TasksController extends Controller
 {
+    /**
+     * Initialise class
+     *
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +30,9 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = Task::tasksToday()->get();
+        $tasks = Auth::user()->tasks()
+            ->where('scheduled_at' , '<=', Carbon::now())
+            ->get();
         return view('tasks.index', compact('tasks'));
     }
 
@@ -42,7 +54,9 @@ class TasksController extends Controller
      */
     public function store(TaskRequest $request)
     {
-        Task::create($request->all());
+        $task = new Task($request->all());
+
+        Auth::user()->tasks()->save($task);
 
         return redirect()->back()
             ->withSuccess('Task has been created.');
