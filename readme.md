@@ -7,6 +7,7 @@ A daily ToDo list project created using Laravel v5.1.4
 1. Clone the repository
 2. Create the .env file with your environment - make sure to create a database :)
 3. Run the migration
+4. Execute  `composer update`
 4. Enjoy!
 
 
