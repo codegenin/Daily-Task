@@ -13,7 +13,7 @@ class AddUserIdColumn extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->after('id');
             $table->foreign('user_id')->references('id')
                 ->on('users')->onDelete('cascade');
         });
@@ -27,6 +27,7 @@ class AddUserIdColumn extends Migration
     public function down()
     {
         Schema::table('tasks', function (Blueprint $table) {
+            $table->dropForeign('tasks_user_id_foreign');
             $table->dropColumn('user_id');
         });
     }
