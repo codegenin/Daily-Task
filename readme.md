@@ -14,9 +14,3 @@ A daily ToDo list project created using Laravel v5.1.4
 Enjoy!
 
 
-## TODO's
-
-1. Make task title sluggable
-2. Add a function to mark a task as completed
-3. Add Authentication and user registration
-
