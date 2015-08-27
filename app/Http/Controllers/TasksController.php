@@ -72,6 +72,7 @@ class TasksController extends Controller
     {
         $task = Task::where('scheduled_at', Carbon::now()->format('Y-m-d'))
             ->where('completed', 0)
+            ->where('user_id', '=', Auth::user()->id)
             ->findOrFail($id);
 
         return view('tasks.show', compact('task'));
@@ -86,6 +87,13 @@ class TasksController extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
+
+        // Redirect to home page if user is not the owner
+        if (Auth::user()->id !== $task->user_id)
+        {
+            return redirect('/');
+        }
+
         return view('tasks.edit', compact('task'));
     }
 
