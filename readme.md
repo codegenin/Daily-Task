@@ -4,11 +4,14 @@ A daily ToDo list project created using Laravel v5.1.4
 
 ## Installation
 
-1. Clone the repository
-2. Create the .env file with your environment - make sure to create a database :)
-3. Run the migration
-4. Execute  `composer update`
-4. Enjoy!
+1. git@github.com:codegenin/Daily-Task.git taskProject
+2. cd to taskProject
+3. composer install
+4. php artisan key:generate
+5. create database and change .env file values
+6. Run the migration
+
+Enjoy!
 
 
 ## TODO's
