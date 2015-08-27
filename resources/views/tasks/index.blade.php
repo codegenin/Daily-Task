@@ -10,7 +10,7 @@
         <h3>{{ $task->title }}</h3>
         <p>{{ $task->description }}</p>
         <p>
-            <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-info">
+            <a href="/tasks/{{ $task->slug }}" class="btn btn-info">
                 View Task
             </a>
             <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-primary">

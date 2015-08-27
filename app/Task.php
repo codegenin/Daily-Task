@@ -15,6 +15,34 @@ class Task extends Model
     protected $dates = ['scheduled_at']; // Change into laravel dates
 
     /**
+     * Set name field to slug on insert
+     *
+     * @param $name
+     */
+    public function setTitleAttribute($name)
+    {
+        $this->attributes['title'] = $name;
+        if (!$this->exists) {
+            $this->setUniqueSlug($name, '');
+        }
+    }
+    /**
+     * Recursive routine to set unique slug
+     *
+     * @param $name
+     * @param $extra
+     */
+    protected function setUniqueSlug($name, $extra)
+    {
+        $slug = str_slug($name.'-'.$extra);
+        if (static::whereSlug($slug)->exists()) {
+            $this->setUniqueSlug($name, $extra + 1);
+            return;
+        }
+        $this->attributes['slug'] = $slug;
+    }
+
+    /**
      * Setter attribute for scheduled_at field
      *
      * @param $date

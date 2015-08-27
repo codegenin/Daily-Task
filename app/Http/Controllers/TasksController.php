@@ -65,15 +65,16 @@ class TasksController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param $slug
      * @return Response
+     * @internal param int $id
      */
-    public function show($id)
+    public function showTask($slug)
     {
         $task = Task::where('scheduled_at', Carbon::now()->format('Y-m-d'))
             ->where('completed', 0)
             ->where('user_id', '=', Auth::user()->id)
-            ->findOrFail($id);
+            ->whereSlug($slug)->firstOrFail();
 
         return view('tasks.show', compact('task'));
     }

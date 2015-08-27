@@ -13,7 +13,11 @@
 
 get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
 
-resource('tasks', 'TasksController');
+resource('tasks', 'TasksController', [
+    'except' => 'show'
+]);
+
+get('tasks/{slug}', 'TasksController@showTask');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
